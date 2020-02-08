@@ -38,7 +38,7 @@ const ejecutaFiltro = (valorElegido) => {
        arrayElegido = valorElegido.split(" ")
        
      const productosElegidos = productos.filter(producto => producto.color.includes(arrayElegido[0]) || producto.tipo.includes(arrayElegido[0]) || !arrayElegido)
-     console.log(productosElegidos)
+     
      
      const segundaCondicion = productosElegidos.filter(producto => producto.color.includes(arrayElegido[1]) || producto.tipo.includes(arrayElegido[1]) || !arrayElegido || arrayElegido.length === 1)
 
