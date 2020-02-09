@@ -35,14 +35,18 @@ const inputSubmit = document.querySelectorAll("input[type= 'text']")
 //Funcion filtros 
 
 const ejecutaFiltro = (valorElegido) => {
-       arrayElegido = valorElegido.split(" ")
-       
-     const productosElegidos = productos.filter(producto => producto.color.includes(arrayElegido[0]) || producto.tipo.includes(arrayElegido[0]) || !arrayElegido)
-     
-     
-     const segundaCondicion = productosElegidos.filter(producto => producto.color.includes(arrayElegido[1]) || producto.tipo.includes(arrayElegido[1]) || !arrayElegido || arrayElegido.length === 1)
+    let arrayElegido = valorElegido.toLowerCase().split(" ")
 
-    contenedorTarjeta.innerHTML = accTarjetas(segundaCondicion)
+    let productosElegidos = arrayElegido.reduce((acc, curr) => {
+        acc = acc.filter(producto => {
+            return producto.color.includes(curr) ||
+                producto.tipo.includes(curr) ||
+                producto.nombre.toLowerCase().includes(curr)
+        })
+        return acc
+    }, productos)
+
+    contenedorTarjeta.innerHTML = accTarjetas(productosElegidos)
 
 }
 
@@ -62,12 +66,12 @@ contenedorTarjeta.innerHTML = accTarjetas(productos)
 formfiltro.onsubmit = e => {
     e.preventDefault()
     ejecutaFiltro(inputFiltro.value)
-    
+
 }
 
 window.onkeypress = e => {
     if (e.keyCode == 13) {
-    ejecutaFiltro(inputFiltro.value)
+        ejecutaFiltro(inputFiltro.value)
     }
 
 }
