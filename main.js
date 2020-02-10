@@ -38,28 +38,27 @@ const ejecutaFiltro = (valorElegido) => {
     let arrayElegido = valorElegido.toLowerCase().split(" ")
 
     let productosElegidos = arrayElegido.reduce((acc, curr) => {
-        acc = acc.filter(producto => {
+        return acc.filter(producto => {
             return producto.color.includes(curr) ||
                 producto.tipo.includes(curr) ||
                 producto.nombre.toLowerCase().includes(curr)
         })
-        return acc
+
     }, productos)
 
     contenedorTarjeta.innerHTML = accTarjetas(productosElegidos)
 
 }
 
-//Funcion que acc tarjetas 
+//Funcion que acumula las tarjetas 
 
 const accTarjetas = (arr) => {
-    let acc = "";
-    arr.forEach(producto => {
-        acc += `<div class="card"><img src="${producto.img}" alt="${producto.nombre}">
-     <div class="nombrecard">${producto.nombre}</div>
+    return arr.reduce((acc, curr) => {
+        return acc + `<div class="card"><img src="${curr.img}" alt="${curr.nombre}">
+     <div class="nombrecard">${curr.nombre}</div>
      </div>`
-    })
-    return acc
+    }, "")
+
 }
 contenedorTarjeta.innerHTML = accTarjetas(productos)
 
