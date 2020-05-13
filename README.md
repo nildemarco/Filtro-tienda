@@ -1,1 +1,1 @@
- https://nildemarco.github.io/tarea-clase-72/index
+ https://nildemarco.github.io/tarea-clase-72/Filtro-tienda/
